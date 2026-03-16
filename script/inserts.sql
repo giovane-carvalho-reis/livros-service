@@ -11,7 +11,7 @@ VALUES ('Rick', 'Riordan'),
        ('Agatha', 'Christie'),
        ('Clarisse', 'Linspector');
 
-INSERT INTO book (name, page_count, author_id)
+INSERT INTO book (title, page_count, author_id)
 VALUES ('Percy Jackson: Ladrão de Raios', 300, 1),
        ('Percy Jackson: Mar de Monstros', 350, 1),
        ('A morte no Rio Nilo', 400, 2),
