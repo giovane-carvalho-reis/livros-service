@@ -19,3 +19,23 @@ services:
       - COLLECTOR_OTLP_ENABLED=true
     volumes:
       - ./data/jaeger:/badger # Persistência relativa para os traces coletados
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    container_name: keycloak
+    command: start-dev
+    restart: always
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: postgres@local
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "9009:8080"
+    depends_on:
+      - db
+volumes:
+  postgres_data:
