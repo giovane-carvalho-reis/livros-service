@@ -5,7 +5,7 @@ FROM eclipse-temurin:25-jre-alpine
 WORKDIR /app
 
 # Copia o jar gerado pelo Maven para o container
-COPY target/*.jar app.jar
+COPY target/livros-service-0.0.1-SNAPSHOT.jar app.jar
 
 # Expõe a porta padrão do Spring Boot
 EXPOSE 9191
