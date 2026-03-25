@@ -9,17 +9,6 @@ services:
     ports:
       - "55432:5432"
 
-  jaeger:
-    image: jaegertracing/all-in-one:latest
-    container_name: jaeger-service
-    ports:
-      - "16686:16686"
-      - "4317:4317"
-      - "4318:4318"
-    environment:
-      - COLLECTOR_OTLP_ENABLED=true
-    volumes:
-      - ./data/jaeger:/badger
 
   keycloak:
     image: quay.io/keycloak/keycloak:24.0
@@ -39,6 +28,8 @@ services:
       - "9009:8080"
     depends_on:
       - db
+    networks:
+      - observability
 
   livros-service:
     build: .
@@ -46,6 +37,15 @@ services:
       - "9191:9191"
     depends_on:
       - db
+    environment:
+      - JAEGER_HOST=jaeger-identity
+      - JAEGER_PORT=4317
+    networks:
+      - observability
 
 volumes:
   postgres_data:
+
+networks:
+  observability:
+    driver: bridge
