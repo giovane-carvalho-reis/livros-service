@@ -19,8 +19,12 @@ jobs:
           echo "Runner: $RUNNER_NAME"
           uname -a
           docker --version
-          node --version
-          npm --version
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '25'
 
       - name: Build Docker sem cache
         run: docker compose build
