@@ -40,6 +40,9 @@ services:
     environment:
       - JAEGER_HOST=jaeger-identity
       - JAEGER_PORT=4317
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/books-service
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres@local
     networks:
       - observability
 
