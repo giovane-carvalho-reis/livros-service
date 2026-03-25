@@ -1,5 +1,5 @@
 # Dockerfile para aplicação Spring Boot
-FROM eclipse-temurin:25-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 
 # Diretório de trabalho dentro do container
 WORKDIR /app
