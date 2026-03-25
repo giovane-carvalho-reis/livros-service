@@ -8,6 +8,7 @@ services:
       POSTGRES_DB: books-service
     ports:
       - "5432:5432"
+
   jaeger:
     image: jaegertracing/all-in-one:latest
     container_name: jaeger-service
@@ -18,7 +19,9 @@ services:
     environment:
       - COLLECTOR_OTLP_ENABLED=true
     volumes:
-      - ./data/jaeger:/badger # Persistência relativa para os traces coletados
+      - ./data/jaeger:/badger
+
+  keycloak:
     image: quay.io/keycloak/keycloak:24.0
     container_name: keycloak
     command: start-dev
@@ -36,11 +39,13 @@ services:
       - "9009:8080"
     depends_on:
       - db
+
   livros-service:
     build: .
     ports:
       - "9191:9191"
     depends_on:
       - db
+
 volumes:
   postgres_data:
