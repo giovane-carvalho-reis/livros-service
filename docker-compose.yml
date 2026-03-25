@@ -19,7 +19,6 @@ services:
       - COLLECTOR_OTLP_ENABLED=true
     volumes:
       - ./data/jaeger:/badger # Persistência relativa para os traces coletados
-  keycloak:
     image: quay.io/keycloak/keycloak:24.0
     container_name: keycloak
     command: start-dev
@@ -35,6 +34,12 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "9009:8080"
+    depends_on:
+      - db
+  livros-service:
+    build: .
+    ports:
+      - "9191:9191"
     depends_on:
       - db
 volumes:
