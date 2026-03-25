@@ -49,4 +49,4 @@ volumes:
 
 networks:
   observability:
-    external: true
+    driver: bridge
