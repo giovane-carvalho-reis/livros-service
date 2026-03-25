@@ -26,8 +26,7 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "9009:8080"
-    depends_on:
-      - identity-postgres
+    # depends_on removido pois identity-postgres está em outro compose
     networks:
       - observability
 
