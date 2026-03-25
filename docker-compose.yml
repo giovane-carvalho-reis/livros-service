@@ -17,17 +17,17 @@ services:
     restart: always
     environment:
       KC_DB: postgres
-      KC_DB_URL_HOST: db
+      KC_DB_URL_HOST: identity-postgres
       KC_DB_URL_PORT: 5432
-      KC_DB_URL_DATABASE: keycloak
+      KC_DB_URL_DATABASE: usuario
       KC_DB_USERNAME: postgres
-      KC_DB_PASSWORD: postgres@local
+      KC_DB_PASSWORD: senha123
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "9009:8080"
     depends_on:
-      - db
+      - identity-postgres
     networks:
       - observability
 
