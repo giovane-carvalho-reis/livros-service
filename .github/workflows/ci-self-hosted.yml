@@ -26,6 +26,9 @@ jobs:
           distribution: 'temurin'
           java-version: '25'
 
+      - name: Build JAR com Maven
+        run: ./mvnw clean package
+
       - name: Build Docker sem cache
         run: docker compose build
 
