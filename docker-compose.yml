@@ -9,26 +9,6 @@ services:
     ports:
       - "55432:5432"
 
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:24.0
-    container_name: keycloak
-    command: start-dev
-    restart: always
-    environment:
-      KC_DB: postgres
-      KC_DB_URL_HOST: identity-postgres
-      KC_DB_URL_PORT: 5432
-      KC_DB_URL_DATABASE: usuario
-      KC_DB_USERNAME: postgres
-      KC_DB_PASSWORD: senha123
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    ports:
-      - "9009:8080"
-    networks:
-      - observability
-
   livros-service:
     build: .
     ports:
@@ -41,6 +21,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/books-service
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres@local
+      - JWT_ISSUER_URI=${JWT_ISSUER_URI}
     networks:
       - observability
 
